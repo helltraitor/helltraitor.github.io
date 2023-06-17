@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   // Nuxt
   devtools: { enabled: true },
+  css: [
+    '@/assets/css/main.sass',
+  ],
   modules: [
     '@nuxtjs/color-mode',
     '@nuxt/content',
