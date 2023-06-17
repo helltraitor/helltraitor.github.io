@@ -37,6 +37,23 @@ export default defineConfig({
       },
     }),
   ],
+  rules: [
+    // PERCENT: Margins
+    [/^m-block-(\d+)p$/, ([, percent]) => ({ 'margin-block': `${percent}%` })],
+    [/^m-block-s-(\d+)p$/, ([, percent]) => ({ 'margin-block-start': `${percent}%` })],
+    [/^m-block-e-(\d+)p$/, ([, percent]) => ({ 'margin-block-end': `${percent}%` })],
+
+    [/^m-inline-(\d+)p$/, ([, percent]) => ({ 'margin-inline': `${percent}%` })],
+    [/^m-inline-s-(\d+)p$/, ([, percent]) => ({ 'margin-inline-start': `${percent}%` })],
+    [/^m-inline-e-(\d+)p$/, ([, percent]) => ({ 'margin-inline-end': `${percent}%` })],
+
+    [/^m-(\d+)p$/, ([, percent]) => ({ margin: `${percent}%` })],
+
+    [/^ml-(\d+)p$/, ([, percent]) => ({ 'margin-left': `${percent}%` })],
+    [/^mr-(\d+)p$/, ([, percent]) => ({ 'margin-right': `${percent}%` })],
+    [/^mt-(\d+)p$/, ([, percent]) => ({ 'margin-top': `${percent}%` })],
+    [/^mb-(\d+)p$/, ([, percent]) => ({ 'margin-bottom': `${percent}%` })],
+  ],
   transformers: [
     TransformerDirectives({
     }),
