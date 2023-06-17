@@ -1,3 +1,6 @@
 extends:
   - "@antfu"
   - "@unocss"
+
+rules:
+  antfu/top-level-function: 0
