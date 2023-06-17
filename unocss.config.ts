@@ -19,6 +19,7 @@ export default defineConfig({
     PresetAttributify({
     }),
     PresetIcons({
+      prefix: 'i-',
       scale: 1.2,
       warn: true,
     }),

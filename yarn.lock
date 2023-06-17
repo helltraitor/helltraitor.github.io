@@ -742,7 +742,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/types@npm:^2.0.0":
+"@iconify-json/carbon@npm:^1.1.18":
+  version: 1.1.18
+  resolution: "@iconify-json/carbon@npm:1.1.18"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: 10faef73d354015c01cb25c0af783170914b7f88180db88cb87b5dba471c676b1536ab116981850b8bcbed9e4d4d60afaa23978d48db4fb2dcfca8e392c8b412
+  languageName: node
+  linkType: hard
+
+"@iconify/json@npm:^2.2.79":
+  version: 2.2.79
+  resolution: "@iconify/json@npm:2.2.79"
+  dependencies:
+    "@iconify/types": "*"
+    pathe: ^1.1.0
+  checksum: 818ba7156ec55810fdf7c40aa773dd5bc58328bacc83d4851cd057c0f4e36eb568c1bf5624f95a433a71aa81154ee9a3fa8eaab12e04ddaf13441c6fda749381
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^2.0.0":
   version: 2.0.0
   resolution: "@iconify/types@npm:2.0.0"
   checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
@@ -1904,7 +1923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/preset-icons@npm:0.53.1":
+"@unocss/preset-icons@npm:0.53.1, @unocss/preset-icons@npm:^0.53.1":
   version: 0.53.1
   resolution: "@unocss/preset-icons@npm:0.53.1"
   dependencies:
@@ -8180,11 +8199,14 @@ __metadata:
   resolution: "nuxt-app@workspace:."
   dependencies:
     "@antfu/eslint-config": ^0.39.5
+    "@iconify-json/carbon": ^1.1.18
+    "@iconify/json": ^2.2.79
     "@nuxt/content": ^2.7.0
     "@nuxt/devtools": latest
     "@types/node": ^18
     "@unocss/eslint-config": ^0.53.1
     "@unocss/nuxt": ^0.53.1
+    "@unocss/preset-icons": ^0.53.1
     eslint: ^8.42.0
     nuxt: ^3.5.2
     sass: ^1.63.4
