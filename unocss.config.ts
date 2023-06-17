@@ -31,9 +31,10 @@ export default defineConfig({
     }),
     PresetWebFonts({
       fonts: {
+        inter: 'Inter',
+        mono: 'DM Mono',
         sans: 'DM Sans',
         serif: 'DM Serif Display',
-        mono: 'DM Mono',
       },
     }),
   ],
