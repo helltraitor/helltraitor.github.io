@@ -6,19 +6,35 @@ const CC_BY_SA_40_HREF = 'https://github.com/Helltraitor/helltraitor.github.io/b
 
 const Footer: Ref<HTMLElement | undefined> = ref()
 
+const startLatestEnterAnimation = (target: HTMLElement) => {
+  const latestEnter = document.querySelectorAll('.slide-enter').length
+  target.style.setProperty('--enter-step', '60ms')
+  target.style.setProperty('--enter-stage', `${latestEnter + 1}`)
+
+  for (const animation of target.getAnimations()) {
+    animation.cancel()
+    animation.play()
+  }
+}
+
 onMounted(() => {
   if (!Footer.value)
     return
 
-  const latestEnter = document.querySelectorAll('.slide-enter').length
-  Footer.value.style.setProperty('--enter-step', '60ms')
-  Footer.value.style.setProperty('--enter-stage', `${latestEnter + 1}`)
-  Footer.value.classList.add('slide-enter')
+  Footer.value.classList.remove('invisible')
+  startLatestEnterAnimation(Footer.value)
+})
+
+watch(useRouter().currentRoute, () => {
+  if (!Footer.value)
+    return
+
+  startLatestEnterAnimation(Footer.value)
 })
 </script>
 
 <template>
-  <footer ref="Footer" :style="{ opacity: Footer ? 0.5 : 0 }" m-a flex flex-col p-4 text-sm>
+  <footer ref="Footer" class="slide-enter invisible" m-a flex flex-col p-4 text-sm opacity-50>
     <span>
       The source code of this site is under
       <NuxtLink :href="MIT_LICENSE_HREF" target="_blank">
@@ -45,10 +61,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="sass">
+.invisible
+  opacity: 0
+
 a
-  color: inherit
-  font-weight: inherit
-  text-decoration: none
   border-bottom: 1px solid rgba(125,125,125,.3)
   transition: border .3s ease-in-out
 
