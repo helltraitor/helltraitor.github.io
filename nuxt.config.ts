@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
     '@/assets/css/main.sass',
+    '@/assets/css/common.sass',
   ],
   modules: [
     '@nuxtjs/color-mode',
