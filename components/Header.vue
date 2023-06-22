@@ -24,6 +24,9 @@ const toggleDark = () => {
         <span lt-md:hidden>Blog</span>
         <div i-carbon:blog md:hidden title="Blog" />
       </NuxtLink>
+      <NuxtLink lt-md:hidden class="linked" to="/posts">
+        Posts
+      </NuxtLink>
       <NuxtLink class="linked" href="https://github.com/helltraitor" target="_blank">
         <span lt-md:hidden>GitHub</span>
         <div i-carbon:logo-github md:hidden title="GitHub" />
