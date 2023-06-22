@@ -3,6 +3,7 @@
   --c-bg-code: #f8f8f8
   --c-scrollbar: #eee
   --c-scrollbar-hover: #bbb
+  --s-scrollbar-size: 6px
 
 html
   background-color: var(--c-bg)
@@ -30,10 +31,10 @@ body
   scrollbar-color: var(--c-scrollbar) var(--c-bg)
 
 ::-webkit-scrollbar
-  width: 6px
+  width: var(--s-scrollbar-size)
 
 ::-webkit-scrollbar:horizontal
-  height: 6px
+  height: var(--s-scrollbar-size)
 
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner
   background: var(--c-bg)
