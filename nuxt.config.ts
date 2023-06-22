@@ -18,6 +18,11 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@unocss/nuxt',
   ],
+  runtimeConfig: {
+    public: {
+      urlBase: process.env.URL_BASE || 'localhost:3000',
+    },
+  },
   // Modules
   colorMode: {
     classSuffix: '',
