@@ -34,7 +34,12 @@ watch(useRouter().currentRoute, () => {
 </script>
 
 <template>
-  <footer ref="Footer" class="slide-enter invisible" m-a flex flex-col p-4 text-sm opacity-50>
+  <footer
+    ref="Footer"
+    class="slide-enter invisible"
+    mb-0 ml-a mr-a flex
+    flex-col p-4 text-sm opacity-50
+  >
     <span>
       The source code of this site is under
       <NuxtLink :href="MIT_LICENSE_HREF" target="_blank">
