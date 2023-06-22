@@ -57,4 +57,5 @@ nav
   *
     align-self: center
     margin: auto
+    backface-visibility: hidden
 </style>
