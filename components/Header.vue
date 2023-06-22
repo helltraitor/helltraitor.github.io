@@ -47,11 +47,6 @@ const toggleDark = () => {
   font-family: 'Courier New', Courier, monospace
   font-size: 22px
 
-a
-  color: inherit
-  font-weight: inherit
-  text-decoration: none
-
 nav
   display: grid
   grid-auto-flow: column
