@@ -9,7 +9,11 @@ dist
 node_modules
 
 # Package manager
-.yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # Logs
 logs
