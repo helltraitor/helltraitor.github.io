@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
   devtools: {
-    enabled: (process.env.DEVTOOLS ?? '1') === '1',
+    enabled: process.env.DEVTOOLS !== '0',
   },
   css: [
     '@/assets/css/main.sass',
