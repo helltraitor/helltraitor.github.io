@@ -37,7 +37,15 @@ const seo = (keys: string[], value: string) => ({ keys, value })
  */
 export const useSeoMetaHelper = (options: UseSeoMetaHelperOptions) => {
   const runtimeConfig = useRuntimeConfig()
-  const fullStrippedPath = useRouter().currentRoute.value.fullPath.replace(/^\//, '')
+
+  const urlBase = runtimeConfig.public.urlBase
+  const urlSchema = runtimeConfig.public.urlSchema
+  const urlAbsolute = `${urlSchema}://${urlBase}`
+
+  const router = useRouter()
+  const fullRawRealPath = router.currentRoute.value.fullPath
+  const fullRawOptionPath = options.path
+  const fullPreferredPath = (fullRawOptionPath ?? fullRawRealPath).replace(/^\//, '')
 
   const defaultAutoMeta = [
     seo(['title'], options.title),
@@ -45,12 +53,12 @@ export const useSeoMetaHelper = (options: UseSeoMetaHelperOptions) => {
 
     seo(['ogTitle', 'og:title'], options.title),
     seo(['ogDescription', 'og:description'], options.description),
-    seo(['ogImage', 'og:image'], `https://${runtimeConfig.public.urlBase}/og.png`),
-    seo(['ogUrl', 'og:url'], `https://${runtimeConfig.public.urlBase}/${options.path ?? fullStrippedPath}`),
+    seo(['ogImage', 'og:image'], `${urlAbsolute}/og.png`),
+    seo(['ogUrl', 'og:url'], `${urlAbsolute}/${fullPreferredPath}`),
 
     seo(['twitterTitle', 'twitter:title'], options.title),
     seo(['twitterDescription', 'twitter:description'], options.description),
-    seo(['twitterImage', 'twitter:image'], `https://${runtimeConfig.public.urlBase}/og.png`),
+    seo(['twitterImage', 'twitter:image'], `${urlAbsolute}/og.png`),
     seo(['twitterCard', 'twitter:card'], 'summary_large_image'),
   ]
 

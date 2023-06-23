@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
+      urlSchema: process.env.URL_SCHEMA || 'http',
       urlBase: process.env.URL_BASE || 'localhost:3000',
     },
   },
