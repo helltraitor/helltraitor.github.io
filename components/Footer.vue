@@ -4,39 +4,27 @@ import '@/assets/css/slide-enter.sass'
 const MIT_LICENSE_HREF = 'https://github.com/Helltraitor/helltraitor.github.io/blob/main/LICENSE'
 const CC_BY_SA_40_HREF = 'https://github.com/Helltraitor/helltraitor.github.io/blob/main/CC-BY-SA-4.0'
 
-const Footer: Ref<HTMLElement | undefined> = ref()
+const router = useRouter()
+const footerElement: Ref<HTMLElement | undefined> = ref()
 
-const startLatestEnterAnimation = (target: HTMLElement) => {
-  const latestEnter = document.querySelectorAll('.slide-enter').length
-  target.style.setProperty('--enter-step', '60ms')
-  target.style.setProperty('--enter-stage', `${latestEnter + 1}`)
+const restartFooterAnimation = () => {
+  if (!footerElement.value)
+    return
 
-  for (const animation of target.getAnimations()) {
+  for (const animation of footerElement.value.getAnimations()) {
     animation.cancel()
     animation.play()
   }
 }
 
-onMounted(() => {
-  if (!Footer.value)
-    return
-
-  Footer.value.classList.remove('invisible')
-  startLatestEnterAnimation(Footer.value)
-})
-
-watch(useRouter().currentRoute, () => {
-  if (!Footer.value)
-    return
-
-  startLatestEnterAnimation(Footer.value)
-})
+watch(router.currentRoute, restartFooterAnimation)
 </script>
 
 <template>
   <footer
-    ref="Footer"
-    class="slide-enter invisible"
+    ref="footerElement"
+    class="slide-enter"
+    style="--enter-initial: 200ms"
     mb-0 ml-a mr-a flex
     flex-col p-4 text-sm opacity-50
   >
@@ -66,9 +54,6 @@ watch(useRouter().currentRoute, () => {
 </template>
 
 <style scoped lang="sass">
-.invisible
-  opacity: 0
-
 a
   border-bottom: 1px solid rgba(125,125,125,.3)
   transition: border .3s ease-in-out
