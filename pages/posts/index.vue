@@ -30,7 +30,10 @@ watch(currentOrdering, () => {
   }
 })
 
-const postsComputedLatest = computed(
+const postsLatestReady = computed(
+  () => !postsLatestCreated.pending.value && !postsLatestModified.pending.value)
+
+const postsLatestComputed = computed(
   () => [postsLatestCreated, postsLatestModified].at(currentOrdering.value)?.data?.value ?? [])
 
 const getYear = (date?: Date | string | number): number => new Date(date ?? '').getFullYear()
@@ -58,7 +61,7 @@ useSeoMetaHelper({
   <div class="root" m-a flex flex-row>
     <div flex flex-grow flex-col gap-2 p-0>
       <div
-        class="slide-enter"
+        :class="{ 'slide-enter': postsLatestReady, 'invisible': !postsLatestReady }"
         flex flex-row lt-md:mt-10 md:mt-30
       >
         <div text-2xl opacity-80>
@@ -72,14 +75,13 @@ useSeoMetaHelper({
         />
       </div>
       <div
-        v-for="(post, index) of postsComputedLatest" :key="index"
+        v-for="(post, index) of postsLatestComputed" :key="index"
         flex flex-col p-2
       >
         <div
-          v-if="currentOrdering === 0 && !isSameGroup(post as PostModel, postsComputedLatest.at(index - 1) as (PostModel | undefined))"
+          v-if="currentOrdering === 0 && !isSameGroup(post as PostModel, postsLatestComputed.at(index - 1) as (PostModel | undefined))"
           ref="animatedElements"
           class="slide-enter"
-
           pointer-events-none relative h20 select-none
           lt-md:hidden
           :style="{
@@ -115,6 +117,9 @@ useSeoMetaHelper({
 </template>
 
 <style scoped lang="sass">
+.invisible
+  opacity: 0
+
 .group-label
   font-family: ui-sans-serif,system-ui,-apple-system, BlinkMacSystemFont,Segoe UI,Roboto, Helvetica Neue,Arial,Noto Sans,sans-serif, "Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji" !important
 

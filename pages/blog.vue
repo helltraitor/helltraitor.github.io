@@ -16,6 +16,9 @@ const postsLatestModified = await useLazyAsyncData(
   async () => queryContent('posts').only(queryPostsFields).sort({ modified: -1 }).limit(4).find(),
 )
 
+const postsLatestReady = computed(
+  () => !postsLatestCreated.pending.value && !postsLatestModified.pending.value)
+
 const packPostData = (raw: Record<string, string>) => ({ path: raw._path, post: intoPostModelAsserted(raw) })
 
 useSeoMetaHelper({
@@ -26,7 +29,10 @@ useSeoMetaHelper({
 
 <template>
   <div class="root" m-a flex flex-row justify-center>
-    <section class="slide-enter" flex flex-col>
+    <section
+      :class="{ 'slide-enter': postsLatestReady, 'invisible': !postsLatestReady }"
+      flex flex-col
+    >
       <TierList
         :default-option="1"
         :available-options="['Created', 'Modified']"
@@ -56,6 +62,9 @@ useSeoMetaHelper({
 </template>
 
 <style scoped lang="sass">
+.invisible
+  opacity: 0
+
 .root
   width: min(80ch, 90vw)
 </style>
