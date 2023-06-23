@@ -18,6 +18,9 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@unocss/nuxt',
   ],
+  plugins: [
+    '~/plugins/scroll.client.ts',
+  ],
   runtimeConfig: {
     public: {
       urlBase: process.env.URL_BASE || 'localhost:3000',
