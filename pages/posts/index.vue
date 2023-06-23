@@ -83,7 +83,15 @@ definePageMeta({
         flex flex-col p-2
       >
         <div
-          v-if="currentOrdering === 0 && !isSameGroup(post as PostModel, postsLatestComputed.at(index - 1) as (PostModel | undefined))"
+          v-if="(
+            currentOrdering === 0
+            && (
+              // Posts flows top to bottom: checks if previous one in different group
+              !isSameGroup(post as PostModel, postsLatestComputed.at(index - 1) as (PostModel | undefined))
+              // Or it comes first, then it always must have group, especially in case when group is only one
+              || index === 0
+            )
+          )"
           ref="animatedElements"
           class="slide-enter"
           pointer-events-none relative h20 select-none
