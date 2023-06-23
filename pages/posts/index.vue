@@ -55,6 +55,10 @@ useSeoMetaHelper({
   title: 'Posts',
   description: 'Helltraitor posts',
 })
+
+definePageMeta({
+  scrollToTop: true,
+})
 </script>
 
 <template>

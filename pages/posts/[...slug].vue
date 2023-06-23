@@ -45,6 +45,10 @@ useSeoMetaHelper({
   excluded: postMeta.flatMap(record => [record.name, record.property]),
 })
 
+definePageMeta({
+  scrollToTop: true,
+})
+
 const postRootElement: Ref<HTMLElement | undefined> = ref()
 
 const startSlideEnterAnimation = () => {
