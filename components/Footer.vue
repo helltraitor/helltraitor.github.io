@@ -41,8 +41,8 @@ watch(router.currentRoute, restartFooterAnimation)
     </span>
     <span>
       This site is powered by
-      <NuxtLink href="https://vitejs.dev" target="_blank">
-        Vite
+      <NuxtLink href="https://nuxt.com" target="_blank">
+        Nuxt
       </NuxtLink>
       ,
       <NuxtLink href="https://vuejs.org" target="_blank">
