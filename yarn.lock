@@ -905,7 +905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/json@npm:^2.2.79":
+"@iconify/json@npm:^2.2.82":
   version: 2.2.82
   resolution: "@iconify/json@npm:2.2.82"
   dependencies:
@@ -1223,7 +1223,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools@npm:latest":
+"@nuxt/devtools@npm:^0.6.3":
   version: 0.6.3
   resolution: "@nuxt/devtools@npm:0.6.3"
   dependencies:
@@ -1393,7 +1393,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/color-mode@npm:^3.2.0":
+"@nuxtjs/color-mode@npm:^3.3.0":
   version: 3.3.0
   resolution: "@nuxtjs/color-mode@npm:3.3.0"
   dependencies:
@@ -1726,17 +1726,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^20.3.1":
   version: 20.3.1
   resolution: "@types/node@npm:20.3.1"
   checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^18":
-  version: 18.16.18
-  resolution: "@types/node@npm:18.16.18"
-  checksum: d32d8a0a04cd3f5ecb361bcb42f3a07623881ac90d680e06bf626defb3c663a94860d11690babe607cfe67265eceeb8a59ba5fe40c0e49f5a1b01e0088640469
   languageName: node
   linkType: hard
 
@@ -2000,7 +1993,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/eslint-config@npm:^0.53.1":
+"@unocss/eslint-config@npm:^0.53.3":
   version: 0.53.3
   resolution: "@unocss/eslint-config@npm:0.53.3"
   dependencies:
@@ -2041,7 +2034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/nuxt@npm:^0.53.1":
+"@unocss/nuxt@npm:^0.53.3":
   version: 0.53.3
   resolution: "@unocss/nuxt@npm:0.53.3"
   dependencies:
@@ -2088,7 +2081,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unocss/preset-icons@npm:0.53.3, @unocss/preset-icons@npm:^0.53.1":
+"@unocss/preset-icons@npm:0.53.3, @unocss/preset-icons@npm:^0.53.3":
   version: 0.53.3
   resolution: "@unocss/preset-icons@npm:0.53.3"
   dependencies:
@@ -4828,7 +4821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.42.0":
+"eslint@npm:^8.43.0":
   version: 8.43.0
   resolution: "eslint@npm:8.43.0"
   dependencies:
@@ -8515,23 +8508,23 @@ __metadata:
   dependencies:
     "@antfu/eslint-config": ^0.39.5
     "@iconify-json/carbon": ^1.1.18
-    "@iconify/json": ^2.2.79
+    "@iconify/json": ^2.2.82
     "@nuxt/content": ^2.7.0
-    "@nuxt/devtools": latest
-    "@nuxtjs/color-mode": ^3.2.0
-    "@types/node": ^18
-    "@unocss/eslint-config": ^0.53.1
-    "@unocss/nuxt": ^0.53.1
-    "@unocss/preset-icons": ^0.53.1
-    eslint: ^8.42.0
-    nuxt: latest
-    sass: ^1.63.4
+    "@nuxt/devtools": ^0.6.3
+    "@nuxtjs/color-mode": ^3.3.0
+    "@types/node": ^20.3.1
+    "@unocss/eslint-config": ^0.53.3
+    "@unocss/nuxt": ^0.53.3
+    "@unocss/preset-icons": ^0.53.3
+    eslint: ^8.43.0
+    nuxt: ^3.6.0
+    sass: ^1.63.6
     typescript: ^5.1.3
-    vue-tsc: ^1.6.5
+    vue-tsc: ^1.8.1
   languageName: unknown
   linkType: soft
 
-"nuxt@npm:latest":
+"nuxt@npm:^3.6.0":
   version: 3.6.0
   resolution: "nuxt@npm:3.6.0"
   dependencies:
@@ -10107,7 +10100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.63.4":
+"sass@npm:^1.63.6":
   version: 1.63.6
   resolution: "sass@npm:1.63.6"
   dependencies:
@@ -11783,7 +11776,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-tsc@npm:^1.6.5":
+"vue-tsc@npm:^1.8.1":
   version: 1.8.1
   resolution: "vue-tsc@npm:1.8.1"
   dependencies:
