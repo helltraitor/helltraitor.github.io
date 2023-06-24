@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import '@/assets/css/slide-enter.sass'
+
 const router = useRouter()
 const currentPathValue = router.currentRoute.value.path
 
