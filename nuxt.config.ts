@@ -38,6 +38,16 @@ export default defineNuxtConfig({
   },
   // Content: https://content.nuxtjs.org/api/configuration/
   content: {
+    highlight: {
+      preload: [
+        'js',
+        'ts',
+      ],
+      theme: {
+        default: 'vitesse-light',
+        dark: 'vitesse-dark',
+      },
+    },
   },
   typescript: {
     strict: true,
