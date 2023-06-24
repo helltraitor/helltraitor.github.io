@@ -66,7 +66,7 @@ useSeoMetaHelper({
 })
 ```
 
-The post data is fetched via`queryContent` Nuxt function (documentation can be found [here](https://content.nuxtjs.org/api/composables/query-content/ "queryContent function documentation")). And preprocessed with `hydrateMeta` helper:
+The post data is fetched via `queryContent` Nuxt function (documentation can be found [here](https://content.nuxtjs.org/api/composables/query-content/ "queryContent function documentation")). And preprocessed with `hydrateMeta` helper:
 ```ts
 const postMeta = (
   Object
