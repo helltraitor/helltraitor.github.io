@@ -21,10 +21,7 @@ export const intoPostModelReason = (data: Record<string, string>): PostModel | s
 
 export const intoPostModel = (data: Record<string, string>): PostModel | undefined => {
   const maybePost = intoPostModelReason(data)
-  if (Array.isArray(maybePost))
-    return undefined
-
-  return maybePost
+  return Array.isArray(maybePost) ? undefined : maybePost
 }
 
 export const intoPostModelAsserted = (data: Record<string, string>): PostModel => {
