@@ -75,6 +75,6 @@ onMounted(startSlideEnterAnimation)
     ref="postRootElement"
     m-a lt-md:w-90vw md:w-60ch
   >
-    <ContentRenderer :value="data ?? undefined" />
+    <ContentRendererMarkdown :value="data ?? {}" tag="div" />
   </div>
 </template>
