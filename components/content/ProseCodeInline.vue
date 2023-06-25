@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import '@/assets/css/linked.sass'
 
-const codeInlineElement: Ref<HTMLElement | undefined> = ref()
+import { useClipboard } from '@vueuse/core'
 
-const copyCode = () => {
-  if (codeInlineElement.value)
-    navigator?.clipboard?.writeText(codeInlineElement.value.innerText)
-}
+const { copy } = useClipboard()
 </script>
 
 <template>
   <code
-    ref="codeInlineElement"
     class="code-inline"
     cursor-pointer border-rounded p-1 text-sm
-    @click="copyCode"
+    @click="copy(($event.currentTarget as HTMLElement)?.innerText)"
   >
     <slot />
   </code>
