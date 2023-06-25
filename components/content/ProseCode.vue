@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useClipboard } from '@vueuse/core'
+
 interface ProseCodeProperties {
   class: string
   code: string
@@ -10,13 +12,24 @@ interface ProseCodeProperties {
 
 const props = defineProps<ProseCodeProperties>()
 
-const copyAllowed = navigator.clipboard !== undefined
+const COPY_DURATION_MS = 2000
 
-const codeCopied = ref(false)
-watch(codeCopied, () => {
-  navigator?.clipboard?.writeText(props.code)
-  setTimeout(() => codeCopied.value = false, 2000)
-})
+const { copy: copyCodeReal, copied } = useClipboard({ copiedDuring: COPY_DURATION_MS })
+const { copy: copyFilename } = useClipboard()
+
+const failed = ref(false)
+
+const copyCode = (text: string) => {
+  copyCodeReal(text)
+    .then(() => failed.value = !copied.value)
+    .catch(() => failed.value = true)
+    .finally(() => {
+      return new Promise(resolve => setTimeout(resolve, COPY_DURATION_MS))
+        .then(() => {
+          failed.value = false
+        })
+    })
+}
 
 /// Match any non space symbols divided by `=` expect `\=` case
 /// In key value pairs
@@ -25,9 +38,6 @@ const parsedMeta = props.meta.matchAll(/(?<key>\S+)(?<!\\)=(?<value>\S+)/gu)
 const parsedMetaFilename = [...parsedMeta].find(regex => regex?.groups?.key === 'filename')
 // parsedMeta has higher priority then standard filename
 const filename = parsedMetaFilename?.groups?.value ?? props.filename
-const copyFilename = () => {
-  navigator?.clipboard?.writeText(filename ?? '')
-}
 </script>
 
 <template>
@@ -42,10 +52,10 @@ const copyFilename = () => {
       <slot />
     </div>
     <span
-      v-show="filename"
+      v-if="filename"
       class="filename"
       absolute right-2 top-2 cursor-pointer
-      @click="copyFilename"
+      @click="copyFilename(filename)"
     >
       <code text-sm>
         {{ filename }}
@@ -54,10 +64,10 @@ const copyFilename = () => {
     <div
       class="copy"
       absolute bottom-2 right-2 cursor-pointer
-      @click="codeCopied = true"
+      @click="copyCode(props.code)"
     >
-      <div v-if="codeCopied && copyAllowed" i-carbon-checkmark />
-      <div v-else-if="codeCopied && !copyAllowed" i-carbon-close />
+      <div v-if="copied" i-carbon-checkmark />
+      <div v-else-if="failed" i-carbon-close />
       <div v-else i-carbon-copy />
     </div>
   </div>
