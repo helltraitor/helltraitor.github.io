@@ -1,8 +1,10 @@
 :root
   --c-bg: #fff
   --c-bg-code: #f8f8f8
-  --c-scrollbar: #eee
-  --c-scrollbar-hover: #bbb
+  --c-scrollbar: #ddd
+  --c-scrollbar-track: #eee
+  --c-scrollbar-hover: #ccc
+  --c-scrollbar-active: #bbb
   --s-scrollbar-size: 6px
 
 html
@@ -15,8 +17,10 @@ html.dark
   color-scheme: dark
   --c-bg: #050505
   --c-bg-code: #0e0e0e
-  --c-scrollbar: #111
-  --c-scrollbar-hover: #222
+  --c-scrollbar: #222
+  --c-scrollbar-track: #111
+  --c-scrollbar-hover: #333
+  --c-scrollbar-active: #444
 
 body
   height: 100%
@@ -28,7 +32,13 @@ body
   background: #8884
 
 *
-  scrollbar-color: var(--c-scrollbar) var(--c-bg)
+  scrollbar-color: var(--c-scrollbar) var(--c-scrollbar-track)
+
+*:hover
+  scrollbar-color: var(--c-scrollbar-hover) var(--c-scrollbar-track)
+
+*:active
+  scrollbar-color: var(--c-scrollbar-active) var(--c-scrollbar-track)
 
 ::-webkit-scrollbar
   width: var(--s-scrollbar-size)
@@ -37,7 +47,7 @@ body
   height: var(--s-scrollbar-size)
 
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner
-  background: var(--c-bg)
+  background: var(--c-scrollbar-track)
   border-radius: 10px
 
 ::-webkit-scrollbar-thumb
@@ -46,6 +56,9 @@ body
 
 ::-webkit-scrollbar-thumb:hover
   background: var(--c-scrollbar-hover)
+
+::-webkit-scrollbar-thumb:active
+  background: var(--c-scrollbar-active)
 
 ::view-transition-old(root),
 ::view-transition-new(root)
