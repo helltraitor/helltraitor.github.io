@@ -29,7 +29,7 @@ watch(currentOption, chosen => emit('updated', chosen))
 <style scoped lang="sass">
 .switcher
   opacity: 0.6
-  transition: 200ms opacify ease-out
+  transition: 200ms opacity ease-in-out
 
 .switcher:hover
   opacity: 0.8
