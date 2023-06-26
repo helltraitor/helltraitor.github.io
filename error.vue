@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import '@/assets/css/slide-enter.sass'
+import '@/assets/css/underlined.sass'
 
 interface RootError {
   statusCode?: number
@@ -23,20 +24,24 @@ useSeoMetaHelper({
           {{ error?.statusMessage || `Error ${error.statusCode}` }}
         </p>
         <p m-block-0>
-          At location: <span font-mono text-sm class="location">{{ useRouter().currentRoute.value.path }}</span>
+          At location: <span text-sm font-mono class="location">{{ useRouter().currentRoute.value.path }}</span>
         </p>
         <p m-block-0 text-sm>
           Note: The current location maybe different from the error one
         </p>
         <div mt-2 :if="error.message">
           With message:
-          <div font-mono text-sm class="reason">
+          <div class="reason" text-sm font-mono>
             {{ error.message || '<undefined>' }}
           </div>
         </div>
         <p m-block-0>
           In case if you have some time, you can
-          <NuxtLink href="https://github.com/Helltraitor/helltraitor.github.io/issues/new" target="_blank">
+          <NuxtLink
+            class="underlined"
+            href="https://github.com/Helltraitor/helltraitor.github.io/issues/new"
+            target="_blank"
+          >
             report issue
           </NuxtLink>
         </p>
@@ -54,12 +59,4 @@ main
   background-color: var(--c-bg-code)
   border-radius: 0.25rem
   padding: 0.10rem
-
-a
-  border-bottom: 1px solid rgba(125,125,125,.3)
-  transition: border .3s ease-in-out
-
-a:hover
-  border-bottom: 1px solid rgba(125,125,125, 1)
-  transition: border .3s ease-in-out
 </style>
