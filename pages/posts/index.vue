@@ -62,11 +62,13 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="root" m-a flex flex-row>
+  <div
+    ml-a mr-a flex lt-md="mt-10 w-90vw" md="mt-30 w-60ch"
+  >
     <div flex flex-grow flex-col gap-2 p-0>
       <div
         :class="{ 'slide-enter': postsLatestReady, 'invisible': !postsLatestReady }"
-        flex flex-row lt-md:mt-10 md:mt-30
+        flex flex-row lt-md:w-90vw md:w-60ch
       >
         <div text-2xl opacity-80>
           Ordering
@@ -134,7 +136,4 @@ definePageMeta({
 
 .group-label
   font-family: ui-sans-serif,system-ui,-apple-system, BlinkMacSystemFont,Segoe UI,Roboto, Helvetica Neue,Arial,Noto Sans,sans-serif, "Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji" !important
-
-.root
-  max-width: min(60ch, 90vh)
 </style>

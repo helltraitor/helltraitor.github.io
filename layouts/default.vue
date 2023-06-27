@@ -1,7 +1,7 @@
 <template>
-  <div m-0 min-h-screen min-w-screen flex flex-col p-0 font-sans>
+  <div m-0 min-h-screen min-w-screen flex flex-grow flex-col p-0 font-sans>
     <Header />
-    <main m-a p-4>
+    <main flex flex-grow flex-col p-4>
       <slot />
     </main>
     <Footer />

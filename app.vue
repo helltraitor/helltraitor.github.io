@@ -8,9 +8,11 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <div class="nuxt-layout" flex flex-grow>
     <NuxtLayout>
-      <NuxtPage />
+      <div class="nuxt-page" flex flex-grow>
+        <NuxtPage />
+      </div>
     </NuxtLayout>
   </div>
 </template>
