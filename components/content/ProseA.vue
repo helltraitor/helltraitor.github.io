@@ -9,7 +9,9 @@ interface ProseAProperties {
 }
 
 const props = defineProps<ProseAProperties>()
-const relativeTarget = props.href?.startsWith('/') ? '_self' : '_blank'
+
+const LOCAL_PATTERN = /^[/#].*/
+const relativeTarget = props.href?.match(LOCAL_PATTERN) ? '_self' : '_blank'
 </script>
 
 <template>
