@@ -48,6 +48,11 @@ export default defineNuxtConfig({
         dark: 'vitesse-dark',
       },
     },
+    markdown: {
+      remarkPlugins: [
+        'remark-heading-id',
+      ],
+    },
   },
   typescript: {
     strict: true,
