@@ -20,9 +20,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@unocss/nuxt',
   ],
-  plugins: [
-    '~/plugins/scroll.client.ts',
-  ],
   runtimeConfig: {
     public: {
       urlSchema: process.env.URL_SCHEMA || 'http',
