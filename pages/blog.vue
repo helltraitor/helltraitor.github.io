@@ -4,22 +4,28 @@ import '@/assets/css/slide-enter.sass'
 
 import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/modules/models/post'
 
-const queryPostsFields = ['_path', ...POST_MODEL_FIELDS]
-
 const postsLatestCreated = await useLazyAsyncData(
   'posts-latest-created-data-4',
-  async () => queryContent('posts').only(queryPostsFields).sort({ created: -1 }).limit(4).find(),
+  async () => queryContent('posts')
+    .only(['_path', ...POST_MODEL_FIELDS])
+    .sort({ created: -1 })
+    .limit(4)
+    .find(),
 )
 
 const postsLatestModified = await useLazyAsyncData(
   'posts-latest-modified-data-4',
-  async () => queryContent('posts').only(queryPostsFields).sort({ modified: -1 }).limit(4).find(),
+  async () => queryContent('posts')
+    .only(['_path', ...POST_MODEL_FIELDS])
+    .sort({ modified: -1, created: -1 })
+    .limit(4)
+    .find(),
 )
 
-const postsLatestReady = computed(
-  () => !postsLatestCreated.pending.value && !postsLatestModified.pending.value)
+const postsLatestPending = computed(() =>
+  postsLatestCreated.pending.value || postsLatestModified.pending.value)
 
-const packPostData = (raw: Record<string, string>) => ({ path: raw._path, post: intoPostModelAsserted(raw) })
+const packPostData = (raw: Record<string, string>) => ({ route: raw._path, model: intoPostModelAsserted(raw) })
 
 useSeoMetaHelper({
   title: 'Blog',
@@ -32,9 +38,12 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="root" m-a flex flex-row justify-center>
+  <div
+    m-a flex flex-row justify-center
+    lt-md:w-90vw md:w-80ch
+  >
     <section
-      :class="{ 'slide-enter': postsLatestReady, 'invisible': !postsLatestReady }"
+      :class="{ 'slide-enter': !postsLatestPending, 'invisible': postsLatestPending }"
       flex flex-col
     >
       <TierList
@@ -50,13 +59,13 @@ definePageMeta({
             Posts
           </NuxtLink>
         </template>
-        <template #item="data">
+        <template #item="{ route, model }">
           <div
             class="linked"
             p-2 border="~ solid rounded gray-200 dark:gray-700"
           >
-            <NuxtLink :to="data.path">
-              <PostCard v-bind="data.post" />
+            <NuxtLink :to="route">
+              <PostCard v-bind="model" />
             </NuxtLink>
           </div>
         </template>
@@ -68,7 +77,4 @@ definePageMeta({
 <style scoped lang="sass">
 .invisible
   opacity: 0
-
-.root
-  width: min(80ch, 90vw)
 </style>
