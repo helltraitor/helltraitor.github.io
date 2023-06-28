@@ -13,6 +13,18 @@ import PresetWebFonts from '@unocss/preset-web-fonts'
 //   NOTE: Transformers has no page
 import TransformerDirectives from '@unocss/transformer-directives'
 
+import { range } from './modules/utils/range'
+
+interface FontOptions {
+  italic?: boolean
+  weights?: number[]
+}
+
+const font = (name: string, options?: FontOptions) => {
+  const { italic, weights } = { ...{ italic: true, weights: range(100, 900, { step: 100 }) }, ...options }
+  return { name, italic, weights }
+}
+
 // https://unocss.dev/config/
 export default defineConfig({
   presets: [
@@ -31,10 +43,10 @@ export default defineConfig({
     }),
     PresetWebFonts({
       fonts: {
-        inter: 'Inter',
-        mono: 'DM Mono',
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
+        inter: font('Inter'),
+        code: font('Fira Code'),
+        mono: font('Source Code Pro'),
+        sans: font('DM Sans'),
       },
     }),
   ],
