@@ -8,7 +8,6 @@ const { copy } = useClipboard()
 
 <template>
   <code
-    class="code-inline"
     cursor-pointer border-rounded p-1 text-sm
     @click="copy(($event.currentTarget as HTMLElement)?.innerText)"
   >
@@ -17,11 +16,13 @@ const { copy } = useClipboard()
 </template>
 
 <style scoped lang="sass">
-.code-inline
+code
+  @apply font-code
+
   background-color: var(--c-bg-code-inline)
   opacity: 0.8
   transition: 200ms opacity ease-in-out
 
-.code-inline:hover
+code:hover
   opacity: 1.0
 </style>

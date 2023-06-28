@@ -89,6 +89,8 @@ const filename = parsedMetaFilename?.groups?.value ?? props.filename
   display: flex
 
   code
+    @apply font-code
+
     display: flex
     flex-direction: column
     flex-grow: 1
