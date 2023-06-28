@@ -18,7 +18,10 @@ const restartFooterAnimation = () => {
   }
 }
 
-watch(router.currentRoute, restartFooterAnimation)
+watch(router.currentRoute, ({ path: oldPath }, { path: newPath }) => {
+  if (oldPath !== newPath)
+    restartFooterAnimation()
+})
 </script>
 
 <template>
