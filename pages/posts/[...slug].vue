@@ -74,7 +74,7 @@ onMounted(startSlideEnterAnimation)
 <template>
   <div
     ref="postRootElement"
-    m-a text-base line-height-relaxed lt-md:w-90vw md:w-60ch
+    m-a text-base line-height-relaxed lt-md:w-90vw md:w-65ch
   >
     <ContentRendererMarkdown :value="data ?? {}" tag="div" />
   </div>
