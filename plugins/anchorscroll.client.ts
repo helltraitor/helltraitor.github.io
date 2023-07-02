@@ -1,12 +1,13 @@
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('page:finish', () => {
     const currentRoute = useRoute()
+    const currentHash = toValue(useNuxtApp().$anchorScroll?.hash || currentRoute.hash)
 
-    if (toValue(currentRoute.meta.scrollToAnchor)) {
+    if (toValue(currentRoute.meta.scrollToAnchor) && currentHash) {
       let anchorElement: HTMLElement | null = null
 
       try {
-        anchorElement = document.querySelector(toValue(useNuxtApp().$anchorScroll?.hash ?? currentRoute.hash))
+        anchorElement = document.querySelector(currentHash)
       }
       catch (error) {
         console.error('[AnchorScroll]: While select element from document, next error occurred:', error)
