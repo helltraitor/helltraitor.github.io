@@ -33,6 +33,7 @@ useSeoMetaHelper({
 })
 
 definePageMeta({
+  scrollToAnchor: true,
   scrollToTop: true,
 })
 </script>
