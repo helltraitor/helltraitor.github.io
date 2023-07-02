@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/content',
     '@unocss/nuxt',
+    '@vueuse/nuxt',
   ],
   runtimeConfig: {
     public: {
