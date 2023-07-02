@@ -5,10 +5,18 @@ const toggleDark = () => {
   const colorMode = useColorMode()
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
 }
+
+const headerElement = ref<HTMLElement | undefined>()
+const headerHeight = refreshed(() => headerElement.value?.clientHeight ?? 0)
+
+useNuxtApp().$headerHeight = headerHeight
 </script>
 
 <template>
-  <header sticky right-6px top-0 z-10 block flex flex-row p-8 font-inter backdrop-blur-sm>
+  <header
+    ref="headerElement"
+    sticky right-6px top-0 z-10 block flex flex-row p-8 font-inter backdrop-blur-sm
+  >
     <div m-inline-s-5p lt-md:hidden />
     <div m-inline-s-1p md:hidden />
 
