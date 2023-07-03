@@ -1276,7 +1276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.6.1, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.5.3, @nuxt/kit@npm:^3.6.0, @nuxt/kit@npm:^3.6.1":
+"@nuxt/kit@npm:3.6.1, @nuxt/kit@npm:^3.3.2, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.5.3, @nuxt/kit@npm:^3.6.0, @nuxt/kit@npm:^3.6.1":
   version: 3.6.1
   resolution: "@nuxt/kit@npm:3.6.1"
   dependencies:
@@ -1730,6 +1730,13 @@ __metadata:
   version: 20.3.2
   resolution: "@types/node@npm:20.3.2"
   checksum: 5929ce2b9b12b1e2a2304a0921a953c72a81f5753ad39ac43b99ce6312fbb2b4fb5bc6b60d64a2550704e3223cd5de1299467d36085ac69888899db978f2653a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.36":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
   languageName: node
   linkType: hard
 
@@ -3679,6 +3686,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crosspath@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "crosspath@npm:2.0.0"
+  dependencies:
+    "@types/node": ^17.0.36
+  checksum: a209e02562504b91da143f1b3fe4c1f7e5dfc20c9c83b2538f802e243ad16fadc3d529aa4e5f47430f91f92f4c1ed0860206c9fcb4e0ad737723a44b32a7f61b
+  languageName: node
+  linkType: hard
+
 "css-declaration-sorter@npm:^6.3.1":
   version: 6.4.0
   resolution: "css-declaration-sorter@npm:6.4.0"
@@ -3831,6 +3847,13 @@ __metadata:
   version: 1.0.2
   resolution: "de-indent@npm:1.0.2"
   checksum: 8deacc0f4a397a4414a0fc4d0034d2b7782e7cb4eaf34943ea47754e08eccf309a0e71fa6f56cc48de429ede999a42d6b4bca761bf91683be0095422dbf24611
+  languageName: node
+  linkType: hard
+
+"debounce@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "debounce@npm:1.2.1"
+  checksum: 682a89506d9e54fb109526f4da255c5546102fbb8e3ae75eef3b04effaf5d4853756aee97475cd4650641869794e44f410eeb20ace2b18ea592287ab2038519e
   languageName: node
   linkType: hard
 
@@ -6154,6 +6177,17 @@ __metadata:
   version: 0.1.1
   resolution: "image-meta@npm:0.1.1"
   checksum: fe38611c2b7f2b327e4bf66bd73a24d5b2fa6aecbe0bc69565dd882c930e9d123e181ccadcdf8f66055d21405eeefaa69863f8ed5e0edcb08a6ee3956560d385
+  languageName: node
+  linkType: hard
+
+"image-size@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "image-size@npm:1.0.2"
+  dependencies:
+    queue: 6.0.2
+  bin:
+    image-size: bin/image-size.js
+  checksum: 01745fdb47f87cecf538e69c63f9adc5bfab30a345345c2de91105f3afbd1bfcfba1256af02bf3323077b33b0004469a837e077bf0cbb9c907e9c1e9e7547585
   languageName: node
   linkType: hard
 
@@ -8555,6 +8589,7 @@ __metadata:
     "@vueuse/nuxt": ^10.2.1
     eslint: ^8.43.0
     nuxt: ^3.6.0
+    nuxt-content-assets: ^1.3.2
     remark-heading-id: ^1.0.0
     sass: ^1.63.6
     typescript: ^5.1.3
@@ -8562,6 +8597,25 @@ __metadata:
     vue-tsc: ^1.8.1
   languageName: unknown
   linkType: soft
+
+"nuxt-content-assets@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "nuxt-content-assets@npm:1.3.2"
+  dependencies:
+    "@nuxt/kit": ^3.3.2
+    crosspath: ^2.0.0
+    debounce: ^1.2.1
+    image-size: ^1.0.2
+    listhen: ^1.0.4
+    ohash: ^1.0.0
+    unist-util-visit: ^4.1.2
+    unstorage: ^1.4.1
+    ws: ^8.13.0
+  peerDependencies:
+    "@nuxt/content": ^2.0.0
+  checksum: 4ddc548f2cd1403f27e00017f4ac59b716c14d8cebcd8363a26c68195c1e9da084996cc75f6aee01e2e8d8fea9022d2102541bd6e7294bf3f48391c72e75c246
+  languageName: node
+  linkType: hard
 
 "nuxt@npm:^3.6.0, nuxt@npm:^3.6.1":
   version: 3.6.1
@@ -8706,7 +8760,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ohash@npm:^1.1.2":
+"ohash@npm:^1.0.0, ohash@npm:^1.1.2":
   version: 1.1.2
   resolution: "ohash@npm:1.1.2"
   checksum: f9f325096658aa793ca91bb6787014c02ed7f9f77a9b5269fc8e2e1f4eea40283f53c0cbf5c1ec2d4004fafbacaa2dae0504caa1c701d4b098c237ed6fb83f95
@@ -9589,6 +9643,15 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: b676f8c040cdc5b12723ad2f91414d267605b26419d5c821ff03befa817ddd10e238d22b25d604920340fd73efd8ba795465a0377c4adf45a4a41e4234e42dc4
+  languageName: node
+  linkType: hard
+
+"queue@npm:6.0.2":
+  version: 6.0.2
+  resolution: "queue@npm:6.0.2"
+  dependencies:
+    inherits: ~2.0.3
+  checksum: ebc23639248e4fe40a789f713c20548e513e053b3dc4924b6cb0ad741e3f264dcff948225c8737834dd4f9ec286dbc06a1a7c13858ea382d9379f4303bcc0916
   languageName: node
   linkType: hard
 
@@ -11396,7 +11459,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unstorage@npm:^1.6.1, unstorage@npm:^1.7.0":
+"unstorage@npm:^1.4.1, unstorage@npm:^1.6.1, unstorage@npm:^1.7.0":
   version: 1.7.0
   resolution: "unstorage@npm:1.7.0"
   dependencies:

@@ -17,6 +17,8 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxtjs/color-mode',
+    // Must be included before content module
+    'nuxt-content-assets',
     '@nuxt/content',
     '@unocss/nuxt',
     '@vueuse/nuxt',
@@ -33,6 +35,10 @@ export default defineNuxtConfig({
     classPrefix: '',
     fallback: 'light',
     preference: 'system',
+  },
+  // ContentAssets: https://nuxt.com/modules/content-assets#configuration
+  contentAssets: {
+    imageSize: 'src',
   },
   // Content: https://content.nuxtjs.org/api/configuration/
   content: {
