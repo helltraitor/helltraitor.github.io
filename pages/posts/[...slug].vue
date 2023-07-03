@@ -16,7 +16,7 @@ if (data.value === null) {
 const hydrateMeta = (meta: Record<string, unknown>): Record<string, string> => {
   const replaceTags = (value: unknown): string => {
     const runtimeConfig = useRuntimeConfig()
-    const urlPath = `http://${runtimeConfig.public.urlBase}`
+    const urlPath = `${runtimeConfig.public.urlSchema}://${runtimeConfig.public.urlBase}`
 
     return (
       `${value}`
