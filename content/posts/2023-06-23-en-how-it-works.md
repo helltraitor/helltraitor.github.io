@@ -50,7 +50,7 @@ override:
 ```
 
 That allows (as mentioned in `yaml`) to add meta tags and ignore similar tags that set by the internal `seoMetaHelper` function.
-```ts filename=[...slug].vue
+```ts []{} { filename=[...slug].vue }
 useHeadSafe({
   meta: postMeta,
 })
