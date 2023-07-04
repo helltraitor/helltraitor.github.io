@@ -81,16 +81,28 @@ export const useAnchorScroll = ({ behavior, offsetLeft, offsetTop }: AnchorScrol
 
       const { top: elementTop, left: elementLeft } = anchorElement.getBoundingClientRect()
 
-      document.body.scrollTo({
+      document.scrollingElement?.scrollBy({
         behavior: toValue(behavior),
-        left: elementLeft + document.body.scrollLeft + toValue(offsetLeft ?? 0),
-        top: elementTop + document.body.scrollTop + toValue(offsetTop ?? 0),
+        left: elementLeft + toValue(offsetLeft ?? 0),
+        top: elementTop + toValue(offsetTop ?? 0),
+      })
+
+      document.body.scrollBy({
+        behavior: toValue(behavior),
+        left: elementLeft + toValue(offsetLeft ?? 0),
+        top: elementTop + toValue(offsetTop ?? 0),
       })
 
       return true
     },
 
     scrollToTop() {
+      document.scrollingElement?.scrollTo({
+        behavior: toValue(behavior),
+        left: toValue(offsetLeft ?? 0),
+        top: toValue(offsetTop ?? 0),
+      })
+
       document.body.scrollTo({
         behavior: toValue(behavior),
         left: toValue(offsetLeft ?? 0),
