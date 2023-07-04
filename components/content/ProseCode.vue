@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
+import { parse } from '~/code/plainmeta'
 
 interface ProseCodeProperties {
   class: string
@@ -31,13 +32,8 @@ const copyCode = (text: string) => {
     })
 }
 
-/// Match any non space symbols divided by `=` expect `\=` case
-/// In key value pairs
-const parsedMeta = props.meta.matchAll(/(?<key>\S+)(?<!\\)=(?<value>\S+)/gu)
-
-const parsedMetaFilename = [...parsedMeta].find(regex => regex?.groups?.key === 'filename')
-// parsedMeta has higher priority then standard filename
-const filename = parsedMetaFilename?.groups?.value ?? props.filename
+const plainmeta = parse(props.meta)
+const filename = plainmeta?.filename ?? props.filename
 </script>
 
 <template>
