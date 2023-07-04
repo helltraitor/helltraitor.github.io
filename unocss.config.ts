@@ -13,7 +13,7 @@ import PresetWebFonts from '@unocss/preset-web-fonts'
 //   NOTE: Transformers has no page
 import TransformerDirectives from '@unocss/transformer-directives'
 
-import { range } from './modules/utils/range'
+import { range } from './code/utils/range'
 
 interface FontOptions {
   italic?: boolean

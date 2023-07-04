@@ -2,8 +2,8 @@
 import '@/assets/css/linked.sass'
 import '@/assets/css/slide-enter.sass'
 
-import type { PostModel } from '~/modules/models/post'
-import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/modules/models/post'
+import type { PostModel } from '~/code/models/post'
+import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/code/models/post'
 
 const animatedElements: Ref<HTMLElement[]> = ref([])
 

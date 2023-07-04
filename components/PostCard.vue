@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type PostModel } from '~/modules/models/post'
+import { type PostModel } from '~/code/models/post'
 
 const { title, created, modified, language, description } = defineProps<PostModel>()
 </script>

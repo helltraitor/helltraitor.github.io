@@ -2,7 +2,7 @@
 import '@/assets/css/linked.sass'
 import '@/assets/css/slide-enter.sass'
 
-import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/modules/models/post'
+import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/code/models/post'
 
 const postsLatestCreated = await useLazyAsyncData(
   'posts-latest-created-data-4',
