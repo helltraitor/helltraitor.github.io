@@ -6,11 +6,11 @@ useHead({
   titleTemplate: '%s - Helltraitor',
 })
 
-useNuxtApp().$anchorScroll = {
+useNuxtApp().$anchorScroll!.defaults.toAnchor = () => ({
   behavior: 'smooth',
   // headerHeight + 20%
-  offsetTop: computed(() => -toValue(useNuxtApp().$headerHeight ?? 0) * 1.2),
-}
+  offsetTop: -toValue(useNuxtApp().$headerHeight ?? 0) * 1.2,
+})
 </script>
 
 <template>

@@ -12,7 +12,7 @@ const ANCHOR_LINK_LEVEL = 5
 const { depth: anchorDepth, exclude: anchorExcluded } = runtimeConfig.public.content.anchorLinks
 const anchorLinkEnabled = ANCHOR_LINK_LEVEL <= anchorDepth && !anchorExcluded.includes(ANCHOR_LINK_LEVEL)
 
-const { scrollToAnchor } = useAnchorScroll(useNuxtApp().$anchorScroll)
+const { scrollToAnchor } = useAnchorScroll()
 </script>
 
 <template>

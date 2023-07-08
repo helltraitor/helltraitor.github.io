@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@unocss/nuxt',
     '@vueuse/nuxt',
+    'nuxt-anchorscroll',
   ],
   runtimeConfig: {
     public: {
