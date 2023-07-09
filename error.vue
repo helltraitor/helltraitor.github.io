@@ -17,7 +17,7 @@ useSeoMetaHelper({
 </script>
 
 <template>
-  <div>
+  <div m-0 flex flex-grow flex-col p-0>
     <NuxtLayout>
       <div m-a class="slide-enter" text-gray-700 dark:text-gray-200>
         <p m-block-0 text-10>
