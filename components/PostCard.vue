@@ -10,7 +10,15 @@ const { title, created, modified, language, description } = defineProps<PostMode
       {{ title }}
     </p>
     <p m-0 p-0 text-sm text-gray-400 dark:text-gray-500>
-      {{ new Date(modified).toDateString() }} / {{ new Date(created).toDateString() }} - {{ language }}
+      <span>
+        {{ new Date(created).toDateString() }}
+      </span>
+      <span v-if="created !== modified">
+        / {{ new Date(modified).toDateString() }}
+      </span>
+      <span>
+        - {{ language }}
+      </span>
     </p>
     <p m-0 p-0 text-gray-500 dark:text-gray-400>
       {{ description }}
