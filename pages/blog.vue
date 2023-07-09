@@ -4,28 +4,50 @@ import '@/assets/css/slide-enter.sass'
 
 import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/code/models/post'
 
-const postsLatestCreated = await useLazyAsyncData(
+const intoPostData = (raw: Record<string, string>) => ({ route: raw._path, model: intoPostModelAsserted(raw) })
+
+const postsLatestCreatedQuery = await useLazyAsyncData(
   'posts-latest-created-data-4',
   async () => queryContent('posts')
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ created: -1 })
     .limit(4)
-    .find(),
+    .find()
+    .then(records => records.map(intoPostData)),
 )
 
-const postsLatestModified = await useLazyAsyncData(
+const postsLatestModifiedQuery = await useLazyAsyncData(
   'posts-latest-modified-data-4',
   async () => queryContent('posts')
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ modified: -1, created: -1 })
     .limit(4)
-    .find(),
+    .find()
+    .then(records => records.map(intoPostData)),
 )
 
 const postsLatestPending = computed(() =>
-  postsLatestCreated.pending.value || postsLatestModified.pending.value)
+  postsLatestCreatedQuery.pending.value || postsLatestModifiedQuery.pending.value)
 
-const packPostData = (raw: Record<string, string>) => ({ route: raw._path, model: intoPostModelAsserted(raw) })
+const postsLatestCreated = computed(() => postsLatestCreatedQuery.data.value ?? [])
+const postsLatestModified = computed(() => postsLatestModifiedQuery.data.value ?? [])
+
+const postsLatest = computed(() => {
+  const postsLatestMerged = [...postsLatestCreated.value, ...postsLatestModified.value]
+  const postsUniqueRoutes = new Set(postsLatestMerged.map(({ route }) => route))
+
+  return (
+    postsLatestMerged
+      .filter(({ route }) => postsUniqueRoutes.delete(route))
+      .sort(({ model: lhs }, { model: rhs }) => (
+        Math.max(+new Date(lhs.created), +new Date(lhs.modified))
+        > Math.max(+new Date(rhs.created), +new Date(rhs.modified))
+          ? -1
+          : 1
+      ))
+      .slice(0, 4)
+  )
+})
 
 useSeoMetaHelper({
   title: 'Blog',
@@ -43,11 +65,12 @@ useSeoMetaHelper({
       flex flex-col
     >
       <TierList
-        :default-option="1"
-        :available-options="['Created', 'Modified']"
+        :default-option="0"
+        :available-options="['Latest', 'Created', 'Modified']"
         :available-groups="[
-          postsLatestCreated.data.value?.map(packPostData) ?? [],
-          postsLatestModified.data.value?.map(packPostData) ?? [],
+          postsLatest,
+          postsLatestCreated,
+          postsLatestModified,
         ]"
       >
         <template #title>
