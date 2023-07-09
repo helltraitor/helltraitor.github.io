@@ -31,11 +31,6 @@ useSeoMetaHelper({
   title: 'Blog',
   description: 'Helltraitor blog',
 })
-
-definePageMeta({
-  scrollToAnchor: true,
-  scrollToTop: true,
-})
 </script>
 
 <template>

@@ -10,11 +10,6 @@ useSeoMetaHelper({
 useHead({
   titleTemplate: '%s',
 })
-
-definePageMeta({
-  scrollToAnchor: true,
-  scrollToTop: true,
-})
 </script>
 
 <template>

@@ -91,11 +91,6 @@ useSeoMetaHelper({
   title: 'Posts',
   description: 'Helltraitor posts',
 })
-
-definePageMeta({
-  scrollToAnchor: true,
-  scrollToTop: true,
-})
 </script>
 
 <template>
