@@ -19,7 +19,7 @@ useSeoMetaHelper({
 <template>
   <div m-0 flex flex-grow flex-col p-0>
     <NuxtLayout>
-      <div m-a class="slide-enter" text-gray-700 dark:text-gray-200>
+      <div class="slide-enter" m-a text-gray-700 lt-md:w-90vw md:w-60ch dark:text-gray-200>
         <p m-block-0 text-10>
           {{ error?.statusMessage || `Error ${error.statusCode}` }}
         </p>
