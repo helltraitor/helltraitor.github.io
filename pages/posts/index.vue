@@ -43,27 +43,21 @@ const groupByKey = <T, U>(values: T[], key: (value: T) => U): { key: U; values: 
   return collection
 }
 
-const postsUnorderedQuery = useLazyAsyncData(
-  'posts-data',
+const postsLatestQuery = useLazyAsyncData(
+  'posts-latest-data',
   async () => queryContent('posts')
     .only(['_path', ...POST_MODEL_FIELDS])
+    .sort({ modified: -1 })
     .find()
     .then(records => records.map(intoPostData)),
 )
 
 const postsLatestGrouped = computed(() => {
-  const getLatestGroupName = ({ created, modified }: PostModel): string => {
-    const latestDate = Math.max(+new Date(created), +new Date(modified))
-    return isFuture(latestDate) ? 'Upcoming' : getYear(latestDate).toString()
+  const getLatestGroupName = ({ modified }: PostModel): string => {
+    return isFuture(modified) ? 'Upcoming' : getYear(modified).toString()
   }
 
-  const postsLatest = [...postsUnorderedQuery.data.value ?? []]
-    .sort(({ model: lhs }, { model: rhs }) => (
-      Math.max(+new Date(lhs.created), +new Date(lhs.modified))
-      > Math.max(+new Date(rhs.created), +new Date(rhs.modified))
-        ? -1
-        : 1
-    ))
+  const postsLatest = [...postsLatestQuery.data.value ?? []]
     .map(({ route, model }, order) => ({ order, route, model }))
 
   return groupByKey(postsLatest, ({ model }) => getLatestGroupName(model))
@@ -74,7 +68,7 @@ const postsCreatedGrouped = computed(() => {
     return isFuture(created) ? 'Upcoming' : getYear(created).toString()
   }
 
-  const postsCreated = [...postsUnorderedQuery.data.value ?? []]
+  const postsCreated = [...postsLatestQuery.data.value ?? []]
     .sort(({ model: lhs }, { model: rhs }) => (
       +new Date(lhs.created) > +new Date(rhs.created) ? -1 : 1
     ))
@@ -83,25 +77,10 @@ const postsCreatedGrouped = computed(() => {
   return groupByKey(postsCreated, ({ model }) => getCreatedGroupName(model))
 })
 
-const postsModifiedGrouped = computed(() => {
-  const getModifiedGroupName = ({ modified }: PostModel): string => {
-    return isFuture(modified) ? 'Upcoming' : getYear(modified).toString()
-  }
-
-  const postsModified = [...postsUnorderedQuery.data.value ?? []]
-    .sort(({ model: lhs }, { model: rhs }) => (
-      +new Date(lhs.modified) > +new Date(rhs.modified) ? -1 : 1
-    ))
-    .map(({ route, model }, order) => ({ order, route, model }))
-
-  return groupByKey(postsModified, ({ model }) => getModifiedGroupName(model))
-})
-
 const currentPostsSelected = computed(() =>
   [
     postsLatestGrouped.value,
     postsCreatedGrouped.value,
-    postsModifiedGrouped.value,
   ][currentOrdering.value],
 )
 
@@ -117,7 +96,7 @@ useSeoMetaHelper({
   >
     <div flex flex-grow flex-col gap-2 p-0>
       <div
-        :class="{ 'slide-enter': !postsUnorderedQuery.pending.value, 'invisible': postsUnorderedQuery.pending.value }"
+        :class="postsLatestQuery.pending.value ? 'invisible' : 'slide-enter'"
         flex flex-row lt-md:w-90vw md:w-60ch
       >
         <div text-2xl opacity-80>
@@ -126,7 +105,7 @@ useSeoMetaHelper({
         <div ml-a />
         <Switcher
           :default-option="0"
-          :available-options="['Latest', 'Created', 'Modified']"
+          :available-options="['Latest', 'Created']"
           @updated="chosen => currentOrdering = chosen"
         />
       </div>
