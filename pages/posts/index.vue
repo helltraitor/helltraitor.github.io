@@ -48,16 +48,17 @@ const postsLatestQuery = useLazyAsyncData(
   async () => queryContent('posts')
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ modified: -1 })
-    .find()
-    .then(records => records.map(intoPostData)),
+    .find(),
 )
+
+const postsLatestIntoPostData = computed(() => postsLatestQuery.data.value?.map(intoPostData) ?? [])
 
 const postsLatestGrouped = computed(() => {
   const getLatestGroupName = ({ modified }: PostModel): string => {
     return isFuture(modified) ? 'Upcoming' : getYear(modified).toString()
   }
 
-  const postsLatest = [...postsLatestQuery.data.value ?? []]
+  const postsLatest = [...postsLatestIntoPostData.value]
     .map(({ route, model }, order) => ({ order, route, model }))
 
   return groupByKey(postsLatest, ({ model }) => getLatestGroupName(model))
@@ -68,7 +69,7 @@ const postsCreatedGrouped = computed(() => {
     return isFuture(created) ? 'Upcoming' : getYear(created).toString()
   }
 
-  const postsCreated = [...postsLatestQuery.data.value ?? []]
+  const postsCreated = [...postsLatestIntoPostData.value]
     .sort(({ model: lhs }, { model: rhs }) => (
       +new Date(lhs.created) > +new Date(rhs.created) ? -1 : 1
     ))

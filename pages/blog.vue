@@ -6,31 +6,30 @@ import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/code/models/post'
 
 const intoPostData = (raw: Record<string, string>) => ({ route: raw._path, model: intoPostModelAsserted(raw) })
 
-const postsCreatedQuery = await useLazyAsyncData(
-  'posts-latest-created-data-4',
-  async () => queryContent('posts')
-    .only(['_path', ...POST_MODEL_FIELDS])
-    .sort({ created: -1 })
-    .limit(4)
-    .find()
-    .then(records => records.map(intoPostData)),
-)
-
 const postsLatestQuery = await useLazyAsyncData(
   'posts-latest-modified-data-4',
   async () => queryContent('posts')
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ modified: -1 })
     .limit(4)
-    .find()
-    .then(records => records.map(intoPostData)),
+    .find(),
 )
 
-const postsLatestPending = computed(() =>
-  postsCreatedQuery.pending.value || postsLatestQuery.pending.value)
+const postsLatestIntoPostData = computed(() => postsLatestQuery.data.value?.map(intoPostData) ?? [])
 
-const postsCreated = computed(() => postsCreatedQuery.data.value ?? [])
-const postsLatest = computed(() => postsLatestQuery.data.value ?? [])
+const postsCreatedQuery = await useLazyAsyncData(
+  'posts-latest-created-data-4',
+  async () => queryContent('posts')
+    .only(['_path', ...POST_MODEL_FIELDS])
+    .sort({ created: -1 })
+    .limit(4)
+    .find(),
+)
+
+const postsCreatedIntoPostData = computed(() => postsCreatedQuery.data.value?.map(intoPostData) ?? [])
+
+const postsPending = computed(() =>
+  postsCreatedQuery.pending.value || postsLatestQuery.pending.value)
 
 useSeoMetaHelper({
   title: 'Blog',
@@ -44,15 +43,15 @@ useSeoMetaHelper({
     lt-md:w-90vw md:w-80ch
   >
     <section
-      :class="postsLatestPending ? 'invisible' : 'slide-enter'"
+      :class="postsPending ? 'invisible' : 'slide-enter'"
       flex flex-col
     >
       <TierList
         :default-option="0"
         :available-options="['Latest', 'Created']"
         :available-groups="[
-          postsLatest,
-          postsCreated,
+          postsLatestIntoPostData,
+          postsCreatedIntoPostData,
         ]"
       >
         <template #title>
