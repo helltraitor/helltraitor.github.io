@@ -31,7 +31,7 @@ useSeoMetaHelper({
         </p>
         <div mt-2 :if="error.message">
           With message:
-          <div class="reason" text-sm font-mono>
+          <div class="reason" break-words text-sm font-mono>
             {{ error.message || '<undefined>' }}
           </div>
         </div>
