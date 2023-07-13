@@ -9,6 +9,10 @@ const intoPostData = (raw: Record<string, string>) => ({ route: raw._path, model
 const postsLatestQuery = await useLazyAsyncData(
   'posts-latest-modified-data-4',
   async () => queryContent('posts')
+    // Selects only two kinds of paths:
+    //   /posts/**
+    //   /posts/**/index
+    .where({ _path: /^(?:\/[^\/]+){2}$/ })
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ modified: -1 })
     .limit(4)
@@ -20,6 +24,10 @@ const postsLatestIntoPostData = computed(() => postsLatestQuery.data.value?.map(
 const postsCreatedQuery = await useLazyAsyncData(
   'posts-latest-created-data-4',
   async () => queryContent('posts')
+    // Selects only two kinds of paths:
+    //   /posts/**
+    //   /posts/**/index
+    .where({ _path: /^(?:\/[^\/]+){2}$/ })
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ created: -1 })
     .limit(4)
