@@ -30,7 +30,7 @@ useHead({
 <template>
   <div
     class="slide-enter"
-    m-a text-gray-700 dark:text-gray-200
+    m-a text-base line-height-relaxed lt-md:w-90vw md:w-60ch
   >
     <ContentRendererMarkdown :value="currentParsedContent" tag="div" />
   </div>
