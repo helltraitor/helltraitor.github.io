@@ -27,7 +27,7 @@ export const intoPostModel = (data: Record<string, string>): PostModel | undefin
 export const intoPostModelAsserted = (data: Record<string, string>): PostModel => {
   const maybePost = intoPostModelReason(data)
   if (Array.isArray(maybePost))
-    throw new Error(`The provided data have unset fields: [${maybePost.join(', ')}]`)
+    throw new Error(`The provided data have unset fields [${maybePost.join(', ')}] on record ${JSON.stringify(data)}`)
 
   return maybePost
 }
