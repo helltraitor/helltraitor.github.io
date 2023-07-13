@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import '@/assets/css/slide-enter.sass'
 
-const router = useRouter()
-const currentPathValue = router.currentRoute.value.path
+const currentPath = useRoute().path
+const currentPost = await useAsyncData(`post-[${currentPath}]`, () => queryContent(currentPath).findOne())
 
-const { data } = await useAsyncData(`post-[${currentPathValue}]`, () => queryContent(currentPathValue).findOne())
+const currentError = currentPost.error.value
+if (currentError)
+  throw currentError
 
-if (data.value === null) {
+const currentParsedContent = currentPost.data.value
+if (!currentParsedContent) {
   throw createError({
     statusCode: 404,
-    message: `Post not found at location '${currentPathValue}'`,
+    message: `Post not found at location '${currentPath}'`,
   })
 }
 
@@ -29,7 +32,7 @@ const hydrateMeta = (meta: Record<string, unknown>): Record<string, string> => {
 
 const postMeta = (
   Object
-    .entries(data.value)
+    .entries(currentParsedContent)
     .filter(([key, _]) => key.match(/^override$/))
     .flatMap(([_, packed]) => Array.isArray(packed) ? packed : [])
     .map(hydrateMeta)
@@ -40,8 +43,8 @@ useHeadSafe({
 })
 
 useSeoMetaHelper({
-  title: data.value.title || 'No title provided',
-  description: data.value.description || 'No description provided',
+  title: currentParsedContent.title || 'No title provided',
+  description: currentParsedContent.description || 'No description provided',
   // Meta could have not only name, but property too
   //   Note: undefined values being ignored by seo helper
   excluded: postMeta.flatMap(record => [record.name, record.property]),
@@ -71,6 +74,6 @@ onMounted(startSlideEnterAnimation)
     ref="postRootElement"
     m-a text-base line-height-relaxed lt-md:w-90vw md:w-65ch
   >
-    <ContentRendererMarkdown :value="data ?? {}" tag="div" />
+    <ContentRendererMarkdown :value="currentParsedContent" tag="div" />
   </div>
 </template>
