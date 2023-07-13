@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const currentPathValue = useRouter().currentRoute.value.path
-
 throw createError({
   statusCode: 404,
-  message: `Page not found at location '${currentPathValue}'`,
+  message: `Page not found at location '${useRoute().path}'`,
 })
 </script>
 
