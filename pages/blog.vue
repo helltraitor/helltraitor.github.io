@@ -6,9 +6,9 @@ import { POST_MODEL_FIELDS, intoPostModelAsserted } from '~/code/models/post'
 
 const intoPostData = (raw: Record<string, string>) => ({ route: raw._path, model: intoPostModelAsserted(raw) })
 
-const postsLatestQuery = await useLazyAsyncData(
+const postsLatestQuery = useLazyAsyncData(
   'posts-latest-data-4',
-  async () => queryContent('posts')
+  () => queryContent('posts')
     // Selects only two kinds of paths:
     //   /posts/**
     //   /posts/**/index
@@ -21,9 +21,9 @@ const postsLatestQuery = await useLazyAsyncData(
 
 const postsLatestIntoPostData = computed(() => postsLatestQuery.data.value?.map(intoPostData) ?? [])
 
-const postsCreatedQuery = await useLazyAsyncData(
+const postsCreatedQuery = useLazyAsyncData(
   'posts-created-data-4',
-  async () => queryContent('posts')
+  () => queryContent('posts')
     // Selects only two kinds of paths:
     //   /posts/**
     //   /posts/**/index

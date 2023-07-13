@@ -45,7 +45,7 @@ const groupByKey = <T, U>(values: T[], key: (value: T) => U): { key: U; values: 
 
 const postsLatestQuery = useLazyAsyncData(
   'posts-latest-data',
-  async () => queryContent('posts')
+  () => queryContent('posts')
     // Selects only two kinds of paths:
     //   /posts/**
     //   /posts/**/index
