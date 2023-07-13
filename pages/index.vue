@@ -6,6 +6,21 @@ useSeoMetaHelper({
   description: 'Helltraitor personal website',
 })
 
+const currentPath = useRoute().path
+const indexContent = await useAsyncData(`content-[${currentPath}]`, () => queryContent(currentPath).findOne())
+
+const currentError = indexContent.error.value
+if (currentError)
+  throw currentError
+
+const currentParsedContent = indexContent.data.value
+if (!currentParsedContent) {
+  throw createError({
+    statusCode: 404,
+    message: `Post not found at location '${currentPath}'`,
+  })
+}
+
 // Overrides default template
 useHead({
   titleTemplate: '%s',
@@ -17,14 +32,6 @@ useHead({
     class="slide-enter"
     m-a text-gray-700 dark:text-gray-200
   >
-    <p m-block-0 text-10>
-      Welcome to my personal site!
-    </p>
-    <p m-block-0>
-      <span text-yellow>
-        TODO:
-      </span>
-      Fill me :D
-    </p>
+    <ContentRendererMarkdown :value="currentParsedContent" tag="div" />
   </div>
 </template>
