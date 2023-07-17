@@ -5,3 +5,6 @@ extends:
 rules:
   antfu/top-level-function:
     - off
+  n/prefer-global/process:
+    - error
+    - always
