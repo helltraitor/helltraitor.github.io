@@ -3,4 +3,5 @@ extends:
   - "@unocss"
 
 rules:
-  antfu/top-level-function: 0
+  antfu/top-level-function:
+    - off
