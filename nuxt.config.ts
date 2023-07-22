@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 const urlSchema = process.env.URL_SCHEMA || 'http'
 const urlDomain = process.env.URL_DOMAIN || 'localhost:3000'
 const urlBase = `${urlSchema}://${urlDomain}`
