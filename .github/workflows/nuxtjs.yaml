@@ -51,7 +51,7 @@ jobs:
         env:
           DEVTOOLS: 0
           URL_SCHEMA: https
-          URL_BASE: helltraitor.github.io
+          URL_DOMAIN: helltraitor.github.io
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

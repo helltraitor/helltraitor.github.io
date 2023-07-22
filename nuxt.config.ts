@@ -1,4 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const urlSchema = process.env.URL_SCHEMA || 'http'
+const urlDomain = process.env.URL_DOMAIN || 'localhost:3000'
+const urlBase = `${urlSchema}://${urlDomain}`
+
 export default defineNuxtConfig({
   // Nuxt
   app: {
@@ -26,8 +30,9 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      urlSchema: process.env.URL_SCHEMA || 'http',
-      urlBase: process.env.URL_BASE || 'localhost:3000',
+      urlSchema,
+      urlDomain,
+      urlBase,
     },
   },
   // Modules

@@ -39,8 +39,6 @@ export const useSeoMetaHelper = (options: UseSeoMetaHelperOptions) => {
   const runtimeConfig = useRuntimeConfig()
 
   const urlBase = runtimeConfig.public.urlBase
-  const urlSchema = runtimeConfig.public.urlSchema
-  const urlAbsolute = `${urlSchema}://${urlBase}`
 
   const router = useRouter()
   const fullRawRealPath = router.currentRoute.value.fullPath
@@ -53,12 +51,12 @@ export const useSeoMetaHelper = (options: UseSeoMetaHelperOptions) => {
 
     seo(['ogTitle', 'og:title'], options.title),
     seo(['ogDescription', 'og:description'], options.description),
-    seo(['ogImage', 'og:image'], `${urlAbsolute}/og.png`),
-    seo(['ogUrl', 'og:url'], `${urlAbsolute}/${fullPreferredPath}`),
+    seo(['ogImage', 'og:image'], `${urlBase}/og.png`),
+    seo(['ogUrl', 'og:url'], `${urlBase}/${fullPreferredPath}`),
 
     seo(['twitterTitle', 'twitter:title'], options.title),
     seo(['twitterDescription', 'twitter:description'], options.description),
-    seo(['twitterImage', 'twitter:image'], `${urlAbsolute}/og.png`),
+    seo(['twitterImage', 'twitter:image'], `${urlBase}/og.png`),
     seo(['twitterCard', 'twitter:card'], 'summary_large_image'),
   ]
 

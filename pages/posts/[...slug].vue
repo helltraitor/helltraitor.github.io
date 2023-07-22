@@ -19,11 +19,10 @@ if (!currentParsedContent) {
 const hydrateMeta = (meta: Record<string, unknown>): Record<string, string> => {
   const replaceTags = (value: unknown): string => {
     const runtimeConfig = useRuntimeConfig()
-    const urlPath = `${runtimeConfig.public.urlSchema}://${runtimeConfig.public.urlBase}`
 
     return (
       `${value}`
-        .replace('%URL_PATH%', urlPath)
+        .replace('%URL_BASE%', `${runtimeConfig.public.urlBase}`)
     )
   }
 
