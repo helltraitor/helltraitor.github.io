@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@vueuse/nuxt',
     'nuxt-anchorscroll',
+    'nuxt-feedme',
   ],
   runtimeConfig: {
     public: {
@@ -60,6 +61,47 @@ export default defineNuxtConfig({
     markdown: {
       remarkPlugins: [
         'remark-heading-id',
+      ],
+    },
+  },
+  feedme: {
+    feeds: {
+      '/feed.atom': { content: true },
+      '/feed.json': { content: true },
+      '/feed.xml': { content: true },
+    },
+    content: {
+      feed: {
+        defaults: {
+          title: 'Helltraitor',
+          description: 'Personal blog site',
+          copyright: 'CC BY-NC-SA 4.0 2023 by Helltraitor',
+          link: urlBase,
+          id: urlBase,
+          author: { email: 'helltraitor@hotmail.com', name: 'Helltraitor' },
+        },
+      },
+      item: {
+        defaults: {
+          author: [
+            { email: 'helltraitor@hotmail.com', name: 'Helltraitor' },
+          ],
+        },
+        mapping: [
+          ['date', 'modified', value => value ? new Date(value) : value],
+          ['date', 'created', value => value ? new Date(value) : value],
+          ['date', '', () => new Date()],
+          ['link', '_path'],
+        ],
+        query: {
+          limit: 100,
+          where: [
+            { _path: /^\/posts\/[^\/]+$/ },
+          ],
+        },
+      },
+      tags: [
+        [/^(?=\/)/, urlBase],
       ],
     },
   },
