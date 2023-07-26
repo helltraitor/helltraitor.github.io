@@ -25,3 +25,9 @@ const relativeTarget = props.href?.match(LOCAL_PATTERN) ? '_self' : '_blank'
     <slot />
   </NuxtLink>
 </template>
+
+<style scoped lang="sass">
+a::v-deep
+  code
+    @apply pb-0
+</style>
