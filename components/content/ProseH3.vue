@@ -40,6 +40,10 @@ const { scrollToAnchor } = useAnchorScroll()
 </template>
 
 <style scoped lang="sass">
+h3::v-deep
+  code
+    @apply text-xl font-extrabold
+
 .box
   &:hover
     a
