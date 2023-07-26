@@ -21,12 +21,12 @@ const { scrollToAnchor } = useAnchorScroll()
     mt-12
     flex flex-row gap-4 align-baseline
   >
-    <h2
+    <h1
       :id="id"
       text-4xl font-extrabold font-inter
     >
       <slot />
-    </h2>
+    </h1>
     <NuxtLink
       v-if="anchorLinkEnabled"
       :href="`#${id}`"
