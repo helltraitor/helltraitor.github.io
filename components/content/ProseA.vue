@@ -27,7 +27,6 @@ const relativeTarget = props.href?.match(LOCAL_PATTERN) ? '_self' : '_blank'
 </template>
 
 <style scoped lang="sass">
-a::v-deep
-  code
-    @apply pb-0
+a:deep(code)
+  @apply pb-0
 </style>
