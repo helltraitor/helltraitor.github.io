@@ -3,7 +3,7 @@ title: How it works
 description: Site structure description
 language: English
 created: 2023-06-23
-modified: 2023-06-23
+modified: 2023-07-27
 ---
 
 # How it works
@@ -61,7 +61,18 @@ With significant feature:
 ---
 modified: yyyy-MM-dd
 override:
-  - { key: value, key1: value1, ... }
+  - http-equiv: X-UA-Compatible
+    content: IE=edge,chrome=1
+
+  - meta1Key1: meta1Value1
+    meta2Key2: meta2VValue2
+    # ...
+
+  - meta2Key1: meta2Value1
+    meta2Key2: meta2Value2
+    # ...
+
+  # ...
 ---
 ```
 
@@ -96,7 +107,7 @@ const postMeta = (
 
 This function replaced special content marks by its content:
 
-- `%URL_ABSOLUTE%` by current absolute url value (e.g. `https://helltraitor.github.io`)
+- `%URL_BASE%` by current base url value (e.g. `https://helltraitor.github.io`)
 
 The `hydrateMeta` function allows set real url to, for example,
 an alternative [og:image][ogp].
@@ -108,7 +119,8 @@ Example with twitter image:
 ---
 modified: yyyy-MM-dd
 override:
-  - { property: twitter:image, content: '%URL_ABSOLUTE%/path-to-alternative.png' }
+  - property: twitter:image
+    content: '%URL_BASE%/path-to-alternative.png'
 ---
 ```
 
