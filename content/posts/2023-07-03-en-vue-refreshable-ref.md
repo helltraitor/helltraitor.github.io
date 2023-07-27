@@ -7,6 +7,7 @@ modified: 2023-07-03
 ---
 
 # Refreshable Ref for Vue
+
 As you may know, Vue web framework already provided `Ref<T>`{lang=ts} and `ComputedRef<T>`{lang=ts} types
 via `ref` and `computed` functions.
 
@@ -33,6 +34,7 @@ If you are satisfied with this workaround, then its fine. Maybe your journey is 
 But as for me, I like more general approach.
 
 ## General approach
+
 Here is the code from my header component.
 
 ```ts [header.vue]{2}
@@ -136,6 +138,7 @@ return {
 ```
 
 ## Usage example
+
 The current implementation can work with `any`{lang=ts} object and can be used as guard
 for always freshed reference. That is because the refreshed reference not only allows
 to get fresh value, but also track internal changes like the `computed` do!
@@ -174,4 +177,4 @@ console.log('Now is the', refTime)
 To be honest it's not correct example with time, but the most important that we don't use any
 watch and evaluate value only **when we really need**.
 
-What I can say for my protection, that is I really like small utils \:D 
+What I can say for my protection, that is I really like small utils \:D

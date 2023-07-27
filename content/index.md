@@ -5,7 +5,7 @@ you can call me Dmitriy or [`@helltraitor`](https://github.com/helltraitor) -
 the last one is preferred.
 
 My passion is to write computer programs. In any languages, with any technologies,
-not concentrated on the concrete goal but the solved problems and getting the exciting the process of. 
+not concentrated on the concrete goal but the solved problems and getting the exciting the process of.
 I'm not intended in things like business and all the things, that's not related to programming.
 But my only hope is that I will loved programming in future as I loved it before and love it now.
 
