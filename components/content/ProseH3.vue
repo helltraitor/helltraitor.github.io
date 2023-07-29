@@ -1,9 +1,9 @@
 <script setup lang="ts">
-interface ProseH1Properties {
+interface ProseH3Properties {
   id: string
 }
 
-defineProps<ProseH1Properties>()
+defineProps<ProseH3Properties>()
 
 const runtimeConfig = useRuntimeConfig()
 
