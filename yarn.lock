@@ -8658,7 +8658,7 @@ __metadata:
     nuxt: ^3.6.0
     nuxt-anchorscroll: ^1.0.0
     nuxt-content-assets: ^1.3.2
-    nuxt-feedme: ^0.1.5
+    nuxt-feedme: ^1.0.0
     remark-heading-id: ^1.0.0
     sass: ^1.63.6
     typescript: ^5.1.3
@@ -8686,16 +8686,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt-feedme@npm:^0.1.5":
-  version: 0.1.5
-  resolution: "nuxt-feedme@npm:0.1.5"
+"nuxt-feedme@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "nuxt-feedme@npm:1.0.0"
   dependencies:
     "@nuxt/content": ^2.7.0
     "@nuxt/kit": ^3.6.3
     feed: ^4.2.2
     h3: ^1.7.1
     serialize-javascript: ^6.0.1
-  checksum: fc8cc04608315a2e1f83e373b53383411daa500f69f6a29d17657115ddd23ab2f9626d2e869c973239e9f4550256aa0bf3e047c5c97c736af628f1456cceab25
+  checksum: 21269fcc9af7cf8dab64c9de9f52cdfa68f882f2bf4f0e23a6a5e687a11866d3fa41bbb4c3cd3a10ea515edfb8f18e43b967031f2f6ca9ce611c92b9722b1761
   languageName: node
   linkType: hard
 
