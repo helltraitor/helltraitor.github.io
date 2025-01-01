@@ -3,7 +3,7 @@ interface ProseH2Properties {
   id: string
 }
 
-defineProps<ProseH2Properties>()
+const { id } = defineProps<{ id: string }>()
 
 const runtimeConfig = useRuntimeConfig()
 
@@ -13,6 +13,8 @@ const { depth: anchorDepth, exclude: anchorExcluded } = runtimeConfig.public.con
 const anchorLinkEnabled = ANCHOR_LINK_LEVEL <= anchorDepth && !anchorExcluded.includes(ANCHOR_LINK_LEVEL)
 
 const { scrollToAnchor } = useAnchorScroll()
+
+const fixedId = `real-${id}`
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const { scrollToAnchor } = useAnchorScroll()
     flex flex-row gap-4 align-baseline
   >
     <h2
-      :id="id"
+      :id="fixedId"
       text-3xl font-extrabold font-inter
     >
       <slot />
@@ -32,7 +34,7 @@ const { scrollToAnchor } = useAnchorScroll()
       :href="`#${id}`"
       mb-a mt-a
       text-xl
-      @click="scrollToAnchor(id)"
+      @click="scrollToAnchor(fixedId)"
     >
       #
     </NuxtLink>
