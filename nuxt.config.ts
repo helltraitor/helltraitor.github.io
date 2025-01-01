@@ -11,13 +11,16 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   devtools: {
     enabled: process.env.DEVTOOLS !== '0',
   },
+
   css: [
     '@/assets/css/main.sass',
     '@/assets/css/common.sass',
   ],
+
   modules: [
     '@nuxtjs/color-mode',
     // Must be included before content module
@@ -28,6 +31,7 @@ export default defineNuxtConfig({
     'nuxt-anchorscroll',
     'nuxt-feedme',
   ],
+
   runtimeConfig: {
     public: {
       urlSchema,
@@ -35,6 +39,7 @@ export default defineNuxtConfig({
       urlBase,
     },
   },
+
   // Modules
   colorMode: {
     classSuffix: '',
@@ -42,10 +47,12 @@ export default defineNuxtConfig({
     fallback: 'light',
     preference: 'system',
   },
+
   // ContentAssets: https://nuxt.com/modules/content-assets#configuration
   contentAssets: {
     imageSize: 'src',
   },
+
   // Content: https://content.nuxtjs.org/api/configuration/
   content: {
     highlight: {
@@ -64,6 +71,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   feedme: {
     feeds: {
       '/feed.atom': { content: true },
@@ -105,11 +113,15 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   typescript: {
     strict: true,
   },
+
   // UnoCSS: See file
   unocss: {
     configFile: 'unocss.config.ts',
   },
+
+  compatibilityDate: '2025-01-01',
 })
