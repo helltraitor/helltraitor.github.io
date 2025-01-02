@@ -92,8 +92,8 @@ const projectsCreatedData = computed(() => {
 })
 
 const projectsPending = computed(() =>
-  projectsLatestData.value.length === 0
-  || projectsCreatedData.value.length === 0)
+  projectsPostsLatestQuery.status.value === 'pending'
+  || projectsPostsCreatedQuery.status.value === 'pending')
 
 useSeoMetaHelper({
   title: 'Blog',

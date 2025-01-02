@@ -132,9 +132,7 @@ const projectsCreatedData = computed(() => {
   return projectsSortedData(projectsAll, projectsPostsLatest, post => new Date(post.model.created))
 })
 
-const projectsPending = computed(() =>
-  projectsLatestData.value.length === 0
-  || projectsCreatedData.value.length === 0)
+const projectsPending = computed(() => projectsAllQuery.status.value === 'pending')
 
 useSeoMetaHelper({
   title: 'Blog',
