@@ -3,7 +3,7 @@ import { useClipboard } from '@vueuse/core'
 import { parse } from '~/code/plainmeta'
 
 interface ProseCodeProperties {
-  class: string
+  class?: string
   code: string
   filename?: string
   highlights?: number[]
