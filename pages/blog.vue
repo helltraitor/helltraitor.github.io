@@ -146,12 +146,11 @@ useSeoMetaHelper({
     lt-md:w-90vw md:w-80ch
   >
     <div
-      flex flex-row justify-center
-      lt-md:w-90vw md:w-80ch
+      flex flex-1 flex-row justify-center
     >
       <section
         :class="postsPending ? 'invisible' : 'slide-enter'"
-        flex flex-col
+        flex flex-1 flex-col
       >
         <TierList
           :default-option="0"
@@ -180,13 +179,12 @@ useSeoMetaHelper({
       </section>
     </div>
     <div
-      flex flex-row justify-center
-      lt-md:w-90vw md:w-80ch
+      flex flex-1 flex-row justify-center
     >
       <section
         v-if="projectsLatestData.length !== 0"
         :class="projectsPending ? 'invisible' : 'slide-enter'"
-        flex flex-col
+        flex flex-1 flex-col
       >
         <TierList
           :default-option="0"
