@@ -111,7 +111,7 @@ useSeoMetaHelper({
   >
     <div flex flex-grow flex-col gap-2 p-0>
       <div
-        :class="postsLatestQuery.pending.value ? 'invisible' : 'slide-enter'"
+        :class="postsLatestQuery.status.value === 'pending' ? 'invisible' : 'slide-enter'"
         flex flex-row lt-md:w-90vw md:w-60ch
       >
         <div text-2xl opacity-80>
