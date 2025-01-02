@@ -33,10 +33,8 @@ watch(currentOption, () => {
       @updated="chosen => currentOption = chosen"
     />
   </div>
-  <div grid grid-flow-row grid-cols-1 mt-6 gap-4 p-0 md:grid-cols-2>
-    <div
-      v-for="(data, index) of availableGroups[currentOption]" :key="index"
-    >
+  <div grid grid-flow-row grid-cols-1 mt-6 gap-4 p-0 md:hidden>
+    <div v-for="(data, index) of availableGroups[currentOption]" :key="index">
       <div
         ref="slideEnterElements"
         class="slide-enter"
@@ -45,6 +43,38 @@ watch(currentOption, () => {
         <slot name="item" v-bind="data">
           <Error message="The item slot wasn't filled by parent component" />
         </slot>
+      </div>
+    </div>
+  </div>
+  <div grid-flow-row grid-cols-2 mt-6 hidden gap-4 p-0 md:grid>
+    <div>
+      <div v-for="(data, index) of availableGroups[currentOption]" :key="index">
+        <div
+          v-if="index % 2 === 0"
+          ref="slideEnterElements"
+          mb-4
+          class="slide-enter"
+          :style="{ '--enter-stage': index, '--enter-step': '60ms' }"
+        >
+          <slot name="item" v-bind="data">
+            <Error message="The item slot wasn't filled by parent component" />
+          </slot>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div v-for="(data, index) of availableGroups[currentOption]" :key="index">
+        <div
+          v-if="index % 2 === 1"
+          ref="slideEnterElements"
+          mb-4
+          class="slide-enter"
+          :style="{ '--enter-stage': index, '--enter-step': '60ms' }"
+        >
+          <slot name="item" v-bind="data">
+            <Error message="The item slot wasn't filled by parent component" />
+          </slot>
+        </div>
       </div>
     </div>
   </div>
