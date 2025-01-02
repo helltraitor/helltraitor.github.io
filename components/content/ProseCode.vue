@@ -33,7 +33,7 @@ const copyCode = (text: string) => {
 }
 
 const plainmeta = parse(props.meta)
-const filename = plainmeta?.filename ?? props.filename
+const filename = `${plainmeta?.filename ?? props.filename ?? ''}`
 </script>
 
 <template>
