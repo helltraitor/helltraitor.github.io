@@ -184,6 +184,7 @@ useSeoMetaHelper({
       lt-md:w-90vw md:w-80ch
     >
       <section
+        v-if="projectsLatestData.length !== 0"
         :class="projectsPending ? 'invisible' : 'slide-enter'"
         flex flex-col
       >
