@@ -1,3 +1,5 @@
+import { defineConfig, searchForWorkspaceRoot } from 'vite'
+
 const urlSchema = process.env.URL_SCHEMA || 'http'
 const urlDomain = process.env.URL_DOMAIN || 'localhost:3000'
 const urlBase = `${urlSchema}://${urlDomain}`
@@ -121,6 +123,18 @@ export default defineNuxtConfig({
   // UnoCSS: See file
   unocss: {
     configFile: 'unocss.config.ts',
+  },
+
+  // Vite
+  vite: {
+    server: {
+      fs: {
+        allow: [
+          searchForWorkspaceRoot(process.cwd()),
+          'node_modules',
+        ],
+      },
+    },
   },
 
   compatibilityDate: '2025-01-01',
