@@ -49,7 +49,7 @@ const postsLatestQuery = useLazyAsyncData(
     // Selects only two kinds of paths:
     //   /posts/**
     //   /posts/**/index
-    .where({ _path: /^(?:\/[^\/]+){2}$/ })
+    .where({ _path: /^\/posts\/[^/]+$/ })
     .only(['_path', ...POST_MODEL_FIELDS])
     .sort({ modified: -1 })
     .find(),
