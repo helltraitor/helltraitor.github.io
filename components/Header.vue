@@ -32,6 +32,10 @@ useNuxtApp().$headerHeight = headerHeight
         <span lt-md:hidden>Blog</span>
         <div i-carbon:blog md:hidden title="Blog" />
       </NuxtLink>
+      <NuxtLink class="linked" to="/projects">
+        <span lt-md:hidden>Projects</span>
+        <div i-carbon:ibm-cloud-projects md:hidden title="Projects" />
+      </NuxtLink>
       <NuxtLink lt-md:hidden class="linked" to="/posts">
         Posts
       </NuxtLink>
