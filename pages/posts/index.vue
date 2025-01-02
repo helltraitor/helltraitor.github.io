@@ -55,7 +55,20 @@ const postsLatestQuery = useLazyAsyncData(
     .find(),
 )
 
+const postsCreatedQuery = useLazyAsyncData(
+  'posts-created-data',
+  () => queryContent('posts')
+    // Selects only two kinds of paths:
+    //   /posts/**
+    //   /posts/**/index
+    .where({ _path: /^\/posts\/[^/]+$/ })
+    .only(['_path', ...POST_MODEL_FIELDS])
+    .sort({ created: -1 })
+    .find(),
+)
+
 const postsLatestIntoPostData = computed(() => postsLatestQuery.data.value?.map(intoPostData) ?? [])
+const postsCreatedIntoPostData = computed(() => postsCreatedQuery.data.value?.map(intoPostData) ?? [])
 
 const postsLatestGrouped = computed(() => {
   const getLatestGroupName = ({ modified }: PostModel): string => {
@@ -73,10 +86,7 @@ const postsCreatedGrouped = computed(() => {
     return isFuture(created) ? 'Upcoming' : getYear(created).toString()
   }
 
-  const postsCreated = [...postsLatestIntoPostData.value]
-    .sort(({ model: lhs }, { model: rhs }) => (
-      +new Date(lhs.created) > +new Date(rhs.created) ? -1 : 1
-    ))
+  const postsCreated = [...postsCreatedIntoPostData.value]
     .map(({ route, model }, order) => ({ order, route, model }))
 
   return groupByKey(postsCreated, ({ model }) => getCreatedGroupName(model))
