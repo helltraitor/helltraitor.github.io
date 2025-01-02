@@ -95,6 +95,11 @@ const projectsPending = computed(() =>
   projectsPostsLatestQuery.status.value === 'pending'
   || projectsPostsCreatedQuery.status.value === 'pending')
 
+watch(projectsPending, (pending) => {
+  if (!pending && projectsLatestData.value.length === 0)
+    navigateTo('/', { replace: true, redirectCode: 404 })
+}, { immediate: true })
+
 useSeoMetaHelper({
   title: 'Blog',
   description: 'Helltraitor blog',
